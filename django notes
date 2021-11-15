@@ -1,0 +1,26 @@
+webapp- stored on a remote server and made available to user through an internet browser
+    - equivalent webapp to excel- google sheets
+    - don't have to install on your local machine
+    - updates automatically
+    - to operate, needs a web server, application server, and a database
+
+2 types of request- get request and post request:
+    - 1. get- initial webpage is loaded (gets info from database)
+        - flows from webserver -----> webpage
+    - 2. post- sends updated information to the database and posts it
+        - flows from webpage -----> webserver
+
+benefits of web apps
+    - allowing multiple users access to the same version of the application
+    - don't need to download app (constant get and post requests)
+
+Django- python library used to build web apps
+    - server-side web framework
+    - we will create a learning log- online journal that lets you keep track of info you've learned about particular topics
+
+URLs will be the access location of the webpages
+
+models.py- where we write the code to define all of our "tables" (objects)
+view.py- interacts with webpage
+
+use "pip freeze > requirements.txt" to save a requirements file with all used libraries
