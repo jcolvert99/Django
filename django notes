@@ -24,3 +24,9 @@ models.py- where we write the code to define all of our "tables" (objects)
 view.py- interacts with webpage
 
 use "pip freeze > requirements.txt" to save a requirements file with all used libraries
+
+2 steps to storing the information on the database
+    1. makemigrations: this command creates a migration file that instructs the database to store any data associated with any new models
+    2. migrate: this command applies the changes in the migration file previosuly created
+
+Must use the admin.py file to post the changes to the webpage
