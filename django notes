@@ -4,7 +4,7 @@ webapp- stored on a remote server and made available to user through an internet
     - updates automatically
     - to operate, needs a web server, application server, and a database
 
-2 types of request- get request and post request:
+****2 types of request- get request and post request:
     - 1. get- initial webpage is loaded (gets info from database)
         - flows from webserver -----> webpage
     - 2. post- sends updated information to the database and posts it
@@ -21,12 +21,31 @@ Django- python library used to build web apps
 URLs will be the access location of the webpages
 
 models.py- where we write the code to define all of our "tables" (objects)
+    - defines the data we want to manage in our app in the form of a class
 view.py- interacts with webpage
 
 use "pip freeze > requirements.txt" to save a requirements file with all used libraries
+
+migrate command is used to modify a database
+    - when used for the first time, it creates a SQLite database which runs off a single file
 
 2 steps to storing the information on the database
     1. makemigrations: this command creates a migration file that instructs the database to store any data associated with any new models
     2. migrate: this command applies the changes in the migration file previosuly created
 
+admin site- makes it easy to work with your models- has access to all info on the site
+
 Must use the admin.py file to post the changes to the webpage
+
+Everytime you make a change to the models file, you must repeat the migrations steps
+
+if on personal computer, must download DB broswer for SQLite- allows you to view your tables you created
+
+db.sqlite3 is the back-end database
+
+Making pages- consists of three stages:
+    1. defining URLs
+    2. writing views
+    3. writing templates
+each URL maps to a view which uses a template to structure the page
+    - process- url calls the view, view calls the databse and retrieves info, view assigns data to a template, template is shown on browser
