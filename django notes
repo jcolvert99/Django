@@ -54,14 +54,14 @@ each URL maps to a view which uses a template to structure the page
 
 Example of adding page- topics page
     1. add topics url to urls.py (under learning logs)
-    2. define a topics function in the views.pu file
+    2. define a topics function in the views.py file
     3. create the topics template topics.html that inherits from base.html
 
 render function- renders to browser using template
 
 to fill out a template file with data- use a dictionary:
-    keys are names from the template
-    values are data we need to send to the template
+    key represents a variable name to use in template
+    value reprsents a variable name to use in views
 
 when creating the html template under the templates folder, name it the same as in url and view
 

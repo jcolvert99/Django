@@ -1,0 +1,18 @@
+{% extends "MainApp/base.html" %}
+
+{% block content %}
+
+<p>Topic: {{ topic }}</p>    <!--pulled from context in views-->
+
+<ul>
+    {% for e in entries %}   <!--go to models to see the attribute list-->
+    <li>
+        <p>{{e.text}}</p>
+        <p>{{e.date_added}}</p>           <!--want e.text because str method in models only returns 50 characters-->
+    </li>
+    {% empty %}
+    <li> There are no entries for this topic yet.</li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}

@@ -5,9 +5,11 @@
 <p>Topics</p>
 
 <ul> 
-    {% for t in topics %}  <!--Calls the key of the topics dictionary in views.py-->
-
-    <li>{{ t }}</li>     <!--Adds the topic to the list-->
+    {% for t in topics %}  <!--Calls the key of the topics dictionary in views.py, iterates throguh the dict-->
+    <li>
+        <a href="{% url 'MainApp:topic' t.id %}">{{ t }}</a>
+    </li>     <!--Adds the topic to the list  (*****add t.date_added attribute if you want to display date)
+                         --only need "t" for text because of str method in models-->
     {% empty %}
     <li>No topics have been added yet.</li>
     {% endfor %}

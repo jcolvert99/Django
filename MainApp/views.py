@@ -16,3 +16,13 @@ def topics(request):        #whatever you called it in urls must be the same
                                     #value- variable used in the view function
     
     return render(request, 'MainApp/topics.html',context)
+
+
+def topic(request,topic_id):     #what you name in url file must be received in views file
+    topic = Topic.objects.get(id=topic_id)
+
+    entries = topic.entry_set.all()        #from myshell.py file
+
+    context = {'topic':topic, 'entries':entries}  #key represents a variable name to use in template
+                                                    #value reprsents a variable name to use in views
+    return render(request, 'MainApp/topic.html',context)
