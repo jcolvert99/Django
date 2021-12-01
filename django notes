@@ -7,10 +7,10 @@ webapp- stored on a remote server and made available to user through an internet
 ****2 types of request- get request and post request:
     - 1. get- initial webpage is loaded (gets info from database)
         - flows from webserver -----> webpage
-        - get data from the database
+        - get data from the database (reading)
     - 2. post- sends updated information to the database and posts it
         - flows from webpage -----> webserver
-        - write to the database
+        - writing data to the database
 
 benefits of web apps
     - allowing multiple users access to the same version of the application
@@ -45,6 +45,8 @@ if on personal computer, must download DB broswer for SQLite- allows you to view
 
 db.sqlite3 is the back-end database
 
+
+
 Making pages- consists of three stages:
     1. defining URLs (add the URL to the urls file)
     2. writing views (define a topics function in the views file)
@@ -67,3 +69,7 @@ when creating the html template under the templates folder, name it the same as 
 
 template tages- {%     %} 
 tempalte variables- {{     }}
+
+
+forms- allow us to receive input from any user across the world and process it
+    - allos users to create their own entries, whereas static web pages are only for informational purposes

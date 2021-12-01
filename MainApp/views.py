@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Topic
+from .forms import TopicForm
 
 # Create your views here.
 def index(request):
@@ -24,5 +25,21 @@ def topic(request,topic_id):     #what you name in url file must be received in 
     entries = topic.entry_set.all()        #from myshell.py file
 
     context = {'topic':topic, 'entries':entries}  #key represents a variable name to use in template
-                                                    #value reprsents a variable name to use in views
+                                                  #value reprsents a variable name to use in views
     return render(request, 'MainApp/topic.html',context)
+
+
+
+def new_topic(request):
+    if request.method != 'POST':    #if get request
+        form = TopicForm()          #loads an empty form
+    else:
+        form = TopicForm(date=request.POST)  #if post request, take data from webpage and save it in form
+
+        if form.is_valid():
+            form.save()
+
+            return redirect('MainApp:topics')
+
+    context = {'form':form}         #interview q- context is a dict that allows us to pass data to the html file
+    return render(request, 'MainApp/new_topic.html',context)
