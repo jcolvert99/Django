@@ -7,8 +7,8 @@
 <ul>
     {% for e in entries %}   <!--go to models to see the attribute list-->
     <li>
-        <p>{{e.text}}</p>
-        <p>{{e.date_added}}</p>           <!--want e.text because str method in models only returns 50 characters-->
+        <p>{{e.text |linebreaks}}</p>
+        <p>{{e.date_added |date:'M d, Y H:i' }}</p>           <!--want e.text because str method in models only returns 50 characters-->
     </li>
     {% empty %}
     <li> There are no entries for this topic yet.</li>
