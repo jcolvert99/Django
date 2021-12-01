@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from .models import Topic
 from .forms import TopicForm
+from .forms import EntryForm
 
 # Create your views here.
 def index(request):
@@ -43,3 +44,22 @@ def new_topic(request):
 
     context = {'form':form}         #interview q- context is a dict that allows us to pass data to the html file
     return render(request, 'MainApp/new_topic.html',context)
+
+
+def new_entry(request,topic_id):           #******* interview q - url.py file has a variable called topic_id, so we must use the same variable
+                                           #or else the website will crash
+    topic = Topic.objects.get(id=topic_id)
+    if request.method != 'POST':
+        form = EntryForm()
+    else:
+        form = EntryForm(data=request.POST)
+                                                #form we're creating only gives the text field, date_added field from models is automatically generated
+        if form.is_valid():
+            new_entry = form.save(commit=False) #tells database we're not ready to write to it yet
+            new_entry.topic = topic             #assigns entry to a topic
+            new_entry.save()
+
+            return redirect('MainApp:topic',topic_id=topic_id)
+
+    context = {'form': form, 'topic':topic}
+    return render(request, 'MainApp/new_entry.html', context)

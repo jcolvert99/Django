@@ -15,3 +15,4 @@ class EntryForm(forms.ModelForm):
         model = Entry
         fields = ['text']
         labels = {'text':''}
+    
