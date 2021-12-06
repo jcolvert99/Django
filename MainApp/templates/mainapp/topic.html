@@ -9,6 +9,7 @@
     <li>
         <p>{{e.text |linebreaks}}</p>
         <p>{{e.date_added |date:'M d, Y H:i' }}</p>           <!--want e.text because str method in models only returns 50 characters-->
+        <a href="{% url 'MainApp:edit_entry' e.id %}">Edit entry</a>
     </li>
     {% empty %}
     <li> There are no entries for this topic yet.</li>

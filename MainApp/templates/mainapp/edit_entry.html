@@ -1,0 +1,19 @@
+{% extends "MainApp/base.html" %}
+
+{% block content %}
+
+<p><a href="{% url 'MainApp:topic' topic.id %}">{{ topic }}</a></p>
+<!--includes topic_id value in the URL so the view function can associate the new entry with the correct topic-->
+<!--user can click on this to get back to the topic they were in-->
+
+<p>Edit entry:</p>:</p>
+
+<form action="{% url 'MainApp:edit_entry' entry.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button name="submit">Save Changes</button>
+
+</form>
+
+{% endblock content %}
