@@ -19,4 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('MainApp.urls')),  #use '' because referencing homepage
+    path('',include('users.urls')), #include all urls in the mainapp and users folders
 ]
