@@ -3,13 +3,15 @@ from .models import Topic
 from .forms import TopicForm
 from .forms import EntryForm
 from .models import Topic, Entry
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-def index(request):
+def index(request):      #don't need login required because this is the only place you can access the login button
     '''The home page for Learning Log'''
     return render(request, 'MainApp/index.html')
 
 
+@login_required
 def topics(request):        #whatever you called it in urls must be the same
     topics = Topic.objects.order_by('date_added')  #calls the topics template
     
@@ -21,6 +23,7 @@ def topics(request):        #whatever you called it in urls must be the same
     return render(request, 'MainApp/topics.html',context)
 
 
+@login_required
 def topic(request,topic_id):     #what you name in url file must be received in views file
     topic = Topic.objects.get(id=topic_id)
 
@@ -31,7 +34,7 @@ def topic(request,topic_id):     #what you name in url file must be received in 
     return render(request, 'MainApp/topic.html',context)
 
 
-
+@login_required
 def new_topic(request):
     if request.method != 'POST':    #if get request
         form = TopicForm()          #loads an empty form
@@ -47,6 +50,7 @@ def new_topic(request):
     return render(request, 'MainApp/new_topic.html',context)
 
 
+@login_required
 def new_entry(request,topic_id):           #******* interview q - url.py file has a variable called topic_id, so we must use the same variable
                                            #or else the website will crash
     topic = Topic.objects.get(id=topic_id)
@@ -66,7 +70,7 @@ def new_entry(request,topic_id):           #******* interview q - url.py file ha
     return render(request, 'MainApp/new_entry.html', context)
 
 
-
+@login_required
 def edit_entry(request, entry_id):
     '''Edit an existing entry'''
     entry = Entry.objects.get(id=entry_id)

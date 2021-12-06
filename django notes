@@ -76,3 +76,5 @@ forms- allow us to receive input from any user across the world and process it
 
 
 Don't have to use the views for user accounts because using django authentication
+
+Decorator- come before a function and must be completed for function to execute (for security)
