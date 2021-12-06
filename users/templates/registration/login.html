@@ -1,0 +1,19 @@
+{% extends "MainApp/base.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+<form action="{% url 'users:login' %}" method="post">
+    {% csrf_token %}   <!--prevents SQL injection hacks-->
+
+    {{ form.as_p }}    <!--don't have to write out each field, just load form-->
+
+    <button name="submit">Log in</button>
+    <input type="hidden" name="next" value="{% url 'MainApp:index' %}" />  <!--redirects to the homepage-->
+
+</form>
+
+{% endblock content %}
