@@ -73,3 +73,6 @@ tempalte variables- {{     }}
 
 forms- allow us to receive input from any user across the world and process it
     - allos users to create their own entries, whereas static web pages are only for informational purposes
+
+
+Don't have to use the views for user accounts because using django authentication
