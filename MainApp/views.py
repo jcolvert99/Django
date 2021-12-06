@@ -4,6 +4,7 @@ from .forms import TopicForm
 from .forms import EntryForm
 from .models import Topic, Entry
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 
 # Create your views here.
 def index(request):      #don't need login required because this is the only place you can access the login button
@@ -13,7 +14,7 @@ def index(request):      #don't need login required because this is the only pla
 
 @login_required
 def topics(request):        #whatever you called it in urls must be the same
-    topics = Topic.objects.order_by('date_added')  #calls the topics template
+    topics = Topic.objects.filter(owner=request.user).order_by('date_added')  #calls the topics template
     
     context = {'topics':topics} #populating the template with the data
                                 #using a DICTIONARY
@@ -26,6 +27,8 @@ def topics(request):        #whatever you called it in urls must be the same
 @login_required
 def topic(request,topic_id):     #what you name in url file must be received in views file
     topic = Topic.objects.get(id=topic_id)
+    if topic.owner != request.user:
+        raise Http404
 
     entries = topic.entry_set.all()        #from myshell.py file
 
