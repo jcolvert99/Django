@@ -1,23 +1,25 @@
 {% extends "MainApp/base.html" %}
 
-{% block content %}
+{% block page_header %}
+<h1>Topics</h1>>
+{% endblock page_header %}
 
-<p>Topics</p>
+
+{% block content %}
 
 <ul> 
     {% for t in topics %}  <!--Calls the key of the topics dictionary in views.py, iterates throguh the dict-->
-    <li>
+    <li><h3>
         <a href="{% url 'MainApp:topic' t.id %}">{{ t }}</a>
-    </li>     <!--Adds the topic to the list  (*****add t.date_added attribute if you want to display date)
+    </h3></li>           <!--Adds the topic to the list  (*****add t.date_added attribute if you want to display date)
                          --only need "t" for text because of str method in models-->
     {% empty %}
-    <li>No topics have been added yet.</li>
+    <li><h3>No topics have been added yet.</li></h3>
     {% endfor %}
 
 </ul>
 
-<a href="{% url 'MainApp:new_topic' %}">Add a new topic</a>
+<h3><a href="{% url 'MainApp:new_topic' %}">Add a new topic</a></h3>
     
-</p>
 
 {% endblock content %}
