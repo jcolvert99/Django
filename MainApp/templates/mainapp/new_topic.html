@@ -1,0 +1,16 @@
+{% extends "MainApp/base.html" %}
+
+{% block content %}
+
+<p>Add a new topic:</p>
+
+<form action="{% url 'MainApp:new_topic' %}" method="post">
+    {% csrf_token %}   <!--prevents SQL injection hacks-->
+
+    {{ form.as_p }}    <!--don't have to write out each field, just load form-->
+
+    <button name="submit">Add topic</button>
+
+</form>
+
+{% endblock content %}

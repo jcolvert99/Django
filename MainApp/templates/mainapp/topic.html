@@ -1,0 +1,30 @@
+{% extends "MainApp/base.html" %}
+
+{% block page_header %}
+<h3>{{ topic }}</h3>        <!--pulled from context in views-->
+{% endblock page_header %}
+
+
+{% block content %} 
+
+{% for e in entries %}   <!--go to models to see the attribute list-->
+<div class="card mb-3">
+    <h4 class="card-header">
+        {{ e.date_added|date:'M d, Y H:i' }}
+        <small><a href="{% url 'MainApp:edit_entry' e.id %}">Edit entry</a></small>
+    </h4>
+<div class="card-body">
+    {{ e.text|linebreaks }}           <!--want e.text because str method in models only returns 50 characters-->
+</div>
+</div>
+
+{% empty %}
+<p>There are no entries for this topic yet.</p>
+{% endfor %}
+
+
+<p>
+    <a href="{% url 'MainApp:new_entry' topic.id %}">Add a new entry</a>
+</p>
+
+{% endblock content %}
