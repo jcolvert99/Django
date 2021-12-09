@@ -3,6 +3,7 @@ from .models import Topic
 from .forms import TopicForm
 from .forms import EntryForm
 from .models import Topic, Entry
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 
@@ -26,7 +27,7 @@ def topics(request):        #whatever you called it in urls must be the same
 
 @login_required
 def topic(request,topic_id):     #what you name in url file must be received in views file
-    topic = Topic.objects.get(id=topic_id)
+    topic = get_object_or_404(Topic, id=topic_id)
     if topic.owner != request.user:
         raise Http404
 
